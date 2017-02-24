@@ -27,9 +27,11 @@ Digital Loggers Web Power Switch management
 from __future__ import print_function
 import sys
 import optparse
+import logging
 from dlipower import PowerSwitch
 from dlipower import DLIPowerException
 
+logging.basicConfig(format='%(levelname)s: %(message)s')
 
 def _block_to_list(block):
     """ Convert a range block into a numeric list
@@ -46,7 +48,7 @@ def _block_to_list(block):
                 val2 = val
                 val2_len = len(val2)
                 # result += range(int(val1),int(val2)+1)
-                for value in outlet_range(int(val1), int(val2) + 1):
+                for value in range(int(val1), int(val2) + 1):
                     result.append(str(value).zfill(val2_len))
                 val = ''
                 val1 = None
